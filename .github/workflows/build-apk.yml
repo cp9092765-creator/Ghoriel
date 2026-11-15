@@ -18,16 +18,19 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Setup Android SDK
+      - name: Install Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: ''
 
-      - name: Accept Android licenses
-        run: yes | sdkmanager --licenses || true
+      - name: Accept Android SDK licenses
+        run: |
+          yes | sdkmanager --licenses || true
 
-      - name: Check project
+      - name: Check Android project
         run: |
           if [ ! -f gradlew ]; then
-            echo "File proyek Android belum tersedia."
+            echo "Android project belum tersedia."
             exit 1
           fi
 
